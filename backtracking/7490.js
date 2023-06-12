@@ -1,3 +1,9 @@
+/*
+  1) 1부터 N까지의 수를 오름차순으로 쓴 수열이 주어진다.
+  2) '+', '-', ' '(공백)을 숫자 사이에 삽입한다.
+  3) 해당 수식의 값이 0일 경우 출력한다.
+*/
+
 let fs = require('fs');
 let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
