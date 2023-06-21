@@ -2,13 +2,26 @@ let fs = require('fs');
 let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
 let n = Number(input[0]);
-let edges = Number(input[1]);
-
-let mySet = new Set();
-for (let i = 2 ; i <= edges + 1 ; i++) {
-  mySet.add(input[i].split(' ')[0]);
-  mySet.add(input[i].split(' ')[1]);
+let m = Number(input[1]);
+let graph = [];
+for (let i = 1 ; i <= n ; i++) graph[i] = [];
+for (let i = 2 ; i <= m + 1 ; i++) {
+  let [x, y] = input[i].split(' ').map(Number);
+  graph[x].push(y);
+  graph[y].push(x);
 }
-let arr = Array.from(mySet);
 
-console.log(arr);
+let count = 0;
+let visited = new Array(n + 1).fill(false);
+
+dfs(1);
+console.log(count - 1);
+
+function dfs (x) {
+  visited[x] = true;
+  count += 1;
+
+  for (y of graph[x]) {
+    if (!visited[y]) dfs(y);
+  }
+}
